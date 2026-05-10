@@ -5,356 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>母亲节快乐</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-      background: radial-gradient(circle at top, #fff7fb 0%, #ffe1ed 40%, #ffd1df 100%);
-      overflow: hidden;
-      color: #8b2446;
-    }
-
-    .bg-hearts span {
-      position: absolute;
-      bottom: -40px;
-      font-size: 22px;
-      opacity: 0.55;
-      animation: floatUp 8s linear infinite;
-    }
-
-    .bg-hearts span:nth-child(1) { left: 8%; animation-delay: 0s; }
-    .bg-hearts span:nth-child(2) { left: 20%; animation-delay: 1.4s; font-size: 18px; }
-    .bg-hearts span:nth-child(3) { left: 35%; animation-delay: 2.5s; font-size: 26px; }
-    .bg-hearts span:nth-child(4) { left: 58%; animation-delay: 0.9s; }
-    .bg-hearts span:nth-child(5) { left: 73%; animation-delay: 3s; font-size: 19px; }
-    .bg-hearts span:nth-child(6) { left: 88%; animation-delay: 1.9s; font-size: 28px; }
-
-    @keyframes floatUp {
-      from { transform: translateY(0) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.65; }
-      to { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
-    }
-
-    .card {
-      width: min(92vw, 460px);
-      min-height: 560px;
-      background: rgba(255, 255, 255, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      backdrop-filter: blur(14px);
-      border-radius: 34px;
-      box-shadow: 0 24px 70px rgba(196, 68, 112, 0.22);
-      padding: 34px 24px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hint {
-      margin-top: 26px;
-      font-size: 15px;
-      color: #a64b69;
-      animation: pulse 1.6s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.55; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.04); }
-    }
-
-    .scene {
-      width: 100%;
-      min-height: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .fade-in {
-      animation: fadeIn 0.8s ease both;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(18px) scale(0.96); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .envelope {
-      width: 260px;
-      height: 170px;
-      position: relative;
-      background: #fff1f5;
-      border: 4px solid #f28aab;
-      border-radius: 18px;
-      box-shadow: 0 16px 30px rgba(210, 74, 119, 0.22);
-      animation: bounce 1.8s infinite;
-    }
-
-    .envelope::before,
-    .envelope::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 13px;
-    }
-
-    .envelope::before {
-      background: linear-gradient(145deg, transparent 49%, #f28aab 50%, transparent 51%),
-                  linear-gradient(215deg, transparent 49%, #f28aab 50%, transparent 51%);
-    }
-
-    .envelope::after {
-      clip-path: polygon(0 0, 50% 58%, 100% 0);
-      background: #ffd6e3;
-      border-radius: 12px 12px 0 0;
-      transform-origin: top;
-      animation: flap 1.8s infinite;
-    }
-
-    .heart-seal {
-      position: absolute;
-      left: 50%;
-      top: 54%;
-      transform: translate(-50%, -50%);
-      font-size: 42px;
-      z-index: 3;
-      filter: drop-shadow(0 5px 8px rgba(154, 30, 76, 0.25));
-    }
-
-    @keyframes flap {
-      0%, 100% { transform: rotateX(0deg); }
-      50% { transform: rotateX(14deg); }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .flower-wrap {
-      position: relative;
-      width: 260px;
-      height: 310px;
-      animation: bloomIn 1s ease both;
-    }
-
-    @keyframes bloomIn {
-      from { transform: scale(0.4) rotate(-8deg); opacity: 0; }
-      to { transform: scale(1) rotate(0); opacity: 1; }
-    }
-
-    .stem {
-      position: absolute;
-      left: 50%;
-      top: 120px;
-      width: 12px;
-      height: 170px;
-      background: linear-gradient(#63b36b, #2e8b57);
-      border-radius: 99px;
-      transform: translateX(-50%);
-    }
-
-    .leaf {
-      position: absolute;
-      width: 70px;
-      height: 36px;
-      background: #69c273;
-      border-radius: 100% 0 100% 0;
-      top: 198px;
-    }
-
-    .leaf.left {
-      left: 62px;
-      transform: rotate(-20deg);
-    }
-
-    .leaf.right {
-      right: 62px;
-      transform: rotate(200deg);
-    }
-
-    .petal {
-      position: absolute;
-      left: 50%;
-      top: 72px;
-      width: 76px;
-      height: 96px;
-      background: linear-gradient(#ff8fb3, #ff5f96);
-      border-radius: 100% 100% 65% 65%;
-      transform-origin: 50% 85%;
-      box-shadow: 0 8px 16px rgba(220, 58, 112, 0.18);
-    }
-
-    .petal:nth-child(1) { transform: translateX(-50%) rotate(0deg) translateY(-42px); }
-    .petal:nth-child(2) { transform: translateX(-50%) rotate(60deg) translateY(-42px); }
-    .petal:nth-child(3) { transform: translateX(-50%) rotate(120deg) translateY(-42px); }
-    .petal:nth-child(4) { transform: translateX(-50%) rotate(180deg) translateY(-42px); }
-    .petal:nth-child(5) { transform: translateX(-50%) rotate(240deg) translateY(-42px); }
-    .petal:nth-child(6) { transform: translateX(-50%) rotate(300deg) translateY(-42px); }
-
-    .center {
-      position: absolute;
-      left: 50%;
-      top: 72px;
-      width: 82px;
-      height: 82px;
-      transform: translateX(-50%);
-      background: radial-gradient(circle, #ffe985 0%, #ffc94f 60%, #ffad33 100%);
-      border-radius: 50%;
-      box-shadow: 0 8px 18px rgba(176, 111, 14, 0.2);
-      display: grid;
-      place-items: center;
-      font-size: 28px;
-    }
-
-    .message h1 {
-      font-size: clamp(30px, 8vw, 46px);
-      line-height: 1.18;
-      margin: 0 0 18px;
-      background: linear-gradient(90deg, #d62064, #ff7aa8, #d62064);
-      background-size: 200%;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: shine 2.8s infinite linear;
-    }
-
-    @keyframes shine {
-      from { background-position: 0%; }
-      to { background-position: 200%; }
-    }
-
-    .typewriter {
-      min-height: 140px;
-      font-size: 19px;
-      line-height: 1.9;
-      color: #7f2d4c;
-      white-space: pre-line;
-    }
-
-    .signature {
-      margin-top: 22px;
-      font-size: 18px;
-      color: #b03865;
-      opacity: 0;
-      animation: fadeIn 1s ease 4.8s forwards;
-    }
-
-    .restart {
-      margin-top: 24px;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 999px;
-      background: #ff8fb3;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
-      box-shadow: 0 10px 20px rgba(218, 70, 119, 0.22);
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .restart:hover {
-      transform: translateY(-2px);
-      background: #f36f9e;
-    }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; font-family:PingFang SC, Microsoft YaHei, sans-serif; background: radial-gradient(circle at top,#fff7fb 0%,#ffe1ed 40%,#ffd1df 100%); overflow:hidden; color:#8b2446; }
+    .bg-hearts span { position:absolute; bottom:-40px; font-size:22px; opacity:0.55; animation:floatUp 8s linear infinite; }
+    .bg-hearts span:nth-child(1) { left:8%; animation-delay:0s; }
+    .bg-hearts span:nth-child(2) { left:20%; animation-delay:1.4s; font-size:18px; }
+    .bg-hearts span:nth-child(3) { left:35%; animation-delay:2.5s; font-size:26px; }
+    .bg-hearts span:nth-child(4) { left:58%; animation-delay:0.9s; }
+    .bg-hearts span:nth-child(5) { left:73%; animation-delay:3s; font-size:19px; }
+    .bg-hearts span:nth-child(6) { left:88%; animation-delay:1.9s; font-size:28px; }
+    @keyframes floatUp { from{transform:translateY(0) rotate(0deg); opacity:0;} 15%{opacity:0.65;} to{transform:translateY(-115vh) rotate(360deg); opacity:0;} }
+    .card { width:min(92vw,460px); min-height:560px; background:rgba(255,255,255,0.58); border:1px solid rgba(255,255,255,0.8); backdrop-filter:blur(14px); border-radius:34px; box-shadow:0 24px 70px rgba(196,68,112,0.22); padding:34px 24px; text-align:center; position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .hint { margin-top:26px; font-size:15px; color:#a64b69; animation:pulse 1.6s infinite; }
+    @keyframes pulse { 0%,100%{opacity:0.55; transform:scale(1);} 50%{opacity:1; transform:scale(1.04);} }
+    .scene { width:100%; min-height:360px; display:flex; align-items:center; justify-content:center; flex-direction:column; cursor:pointer; user-select:none; }
+    .fade-in { animation:fadeIn 0.8s ease both; }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(18px) scale(0.96);} to{opacity:1; transform:translateY(0) scale(1);} }
+    .envelope { width:260px; height:170px; position:relative; background:#fff1f5; border:4px solid #f28aab; border-radius:18px; box-shadow:0 16px 30px rgba(210,74,119,0.22); animation:bounce 1.8s infinite; }
+    .envelope::before, .envelope::after { content:""; position:absolute; inset:0; border-radius:13px; }
+    .envelope::before { background: linear-gradient(145deg,transparent 49%,#f28aab 50%,transparent 51%), linear-gradient(215deg,transparent 49%,#f28aab 50%,transparent 51%); }
+    .envelope::after { clip-path: polygon(0 0, 50% 58%, 100% 0); background:#ffd6e3; border-radius:12px 12px 0 0; transform-origin:top; animation:flap 1.8s infinite; }
+    .heart-seal { position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); font-size:42px; z-index:3; filter: drop-shadow(0 5px 8px rgba(154,30,76,0.25)); }
+    @keyframes flap { 0%,100%{transform:rotateX(0deg);} 50%{transform:rotateX(14deg);} }
+    @keyframes bounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+    .flower-wrap { position:relative; width:260px; height:310px; animation:bloomIn 1s ease both; }
+    @keyframes bloomIn { from{transform:scale(0.4) rotate(-8deg); opacity:0;} to{transform:scale(1) rotate(0); opacity:1;} }
+    .stem { position:absolute; left:50%; top:120px; width:12px; height:170px; background:linear-gradient(#63b36b,#2e8b57); border-radius:99px; transform:translateX(-50%); }
+    .leaf { position:absolute; width:70px; height:36px; background:#69c273; border-radius:100% 0 100% 0; top:198px; }
+    .leaf.left { left:62px; transform:rotate(-20deg); }
+    .leaf.right { right:62px; transform:rotate(200deg); }
+    .petal { position:absolute; left:50%; top:72px; width:76px; height:96px; background:linear-gradient(#ff8fb3,#ff5f96); border-radius:100% 100% 65% 65%; transform-origin:50% 85%; box-shadow:0 8px 16px rgba(220,58,112,0.18); }
+    .petal:nth-child(1){transform:translateX(-50%) rotate(0deg) translateY(-42px);}
+    .petal:nth-child(2){transform:translateX(-50%) rotate(60deg) translateY(-42px);}
+    .petal:nth-child(3){transform:translateX(-50%) rotate(120deg) translateY(-42px);}
+    .petal:nth-child(4){transform:translateX(-50%) rotate(180deg) translateY(-42px);}
+    .petal:nth-child(5){transform:translateX(-50%) rotate(240deg) translateY(-42px);}
+    .petal:nth-child(6){transform:translateX(-50%) rotate(300deg) translateY(-42px);}
+    .center { position:absolute; left:50%; top:72px; width:82px; height:82px; transform:translateX(-50%); background:radial-gradient(circle,#ffe985 0%,#ffc94f 60%,#ffad33 100%); border-radius:50%; box-shadow:0 8px 18px rgba(176,111,14,0.2); display:grid; place-items:center; font-size:28px; }
+    .message h1 { font-size:clamp(30px,8vw,46px); line-height:1.18; margin:0 0 18px; background:linear-gradient(90deg,#d62064,#ff7aa8,#d62064); background-size:200%; -webkit-background-clip:text; color:transparent; animation:shine 2.8s infinite linear; }
+    @keyframes shine { from{background-position:0%;} to{background-position:200%;} }
+    .typewriter { min-height:140px; font-size:19px; line-height:1.9; color:#7f2d4c; white-space:pre-line; }
+    .signature { margin-top:22px; font-size:18px; color:#b03865; opacity:0; animation:fadeIn 1s ease 4.8s forwards; }
+    .restart { margin-top:24px; border:none; padding:12px 20px; border-radius:999px; background:#ff8fb3; color:white; font-size:15px; cursor:pointer; box-shadow:0 10px 20px rgba(218,70,119,0.22); transition:transform 0.2s, background 0.2s; }
+    .restart:hover { transform:translateY(-2px); background:#f36f9e; }
   </style>
 </head>
 <body>
   <div class="bg-hearts" aria-hidden="true">
     <span>♡</span><span>♥</span><span>♡</span><span>♥</span><span>♡</span><span>♥</span>
   </div>
-
   <main class="card">
     <section id="scene" class="scene" onclick="nextStep()"></section>
-    <div id="hint" class="hint">轻轻点一下，有惊喜给妈咪 💌</div>
+    <div id="hint" class="hint">轻轻点一下，有惊喜给田瑶女士 💌</div>
   </main>
-
   <script>
-    let step = 0;
-    const scene = document.getElementById("scene");
-    const hint = document.getElementById("hint");
-
-    function renderEnvelope() {
-      scene.innerHTML = `
-        <div class="envelope fade-in">
-          <div class="heart-seal">💗</div>
-        </div>
-      `;
-      hint.textContent = "轻轻点一下，打开这封给妈咪的信 💌";
-    }
-
-    function renderFlower() {
-      scene.innerHTML = `
-        <div class="flower-wrap">
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="petal"></div>
-          <div class="center">妈</div>
-          <div class="stem"></div>
-          <div class="leaf left"></div>
-          <div class="leaf right"></div>
-        </div>
-      `;
-      hint.textContent = "再点一下，把祝福送给妈咪 🌷";
-    }
-
-    function renderMessage() {
-      scene.onclick = null;
-      scene.style.cursor = "default";
-      hint.style.display = "none";
-      scene.innerHTML = `
-        <div class="message fade-in">
-          <h1>祝妈咪<br>母亲节快乐</h1>
-          <div id="typewriter" class="typewriter"></div>
-          <div class="signature">—— 爱你的孩子 ❤️</div>
-          <button class="restart" onclick="restart(event)">再看一遍</button>
-        </div>
-      `;
-      typeText();
-    }
-
-    function typeText() {
-      const text = "谢谢你把平凡的日子\n过成了温暖的家。\n愿你每天都有鲜花、微笑和好心情，\n也愿我写的每一行代码，\n都能替我说一句：妈咪，我爱你。";
-      const box = document.getElementById("typewriter");
-      let i = 0;
-
-      const timer = setInterval(() => {
-        box.textContent += text[i];
-        i++;
-        if (i >= text.length) clearInterval(timer);
-      }, 75);
-    }
-
-    function nextStep() {
-      step++;
-      if (step === 1) renderFlower();
-      else if (step === 2) renderMessage();
-    }
-
-    function restart(event) {
-      event.stopPropagation();
-      step = 0;
-      scene.onclick = nextStep;
-      scene.style.cursor = "pointer";
-      hint.style.display = "block";
-      renderEnvelope();
-    }
-
+    let step=0;
+    const scene=document.getElementById("scene"), hint=document.getElementById("hint");
+    function renderEnvelope(){scene.innerHTML='<div class="envelope fade-in"><div class="heart-seal">💗</div></div>'; hint.textContent="轻轻点一下，打开这封给田瑶女士的信 💌";}
+    function renderFlower(){scene.innerHTML='<div class="flower-wrap"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="center">妈</div><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div></div>'; hint.textContent="再点一下，把祝福送给田瑶女士 🌷";}
+    function renderMessage(){scene.onclick=null; scene.style.cursor="default"; hint.style.display="none"; scene.innerHTML='<div class="message fade-in"><h1>祝美丽的田瑶女士<br>母亲节快乐</h1><div id="typewriter" class="typewriter"></div><div class="signature">—— 爱你的湘怡 ❤️</div><button class="restart" onclick="restart(event)">再看一遍</button></div>'; typeText();}
+    function typeText(){const text="谢谢你把平凡的日子\n过成了温暖的家。\n愿你每天都有鲜花、微笑和好心情，\n也愿我写的每一行代码，\n都能替我说一句：田瑶女士，我爱你。"; const box=document.getElementById("typewriter"); let i=0; const timer=setInterval(()=>{box.textContent+=text[i]; i++; if(i>=text.length) clearInterval(timer);},75);}
+    function nextStep(){step++; if(step===1) renderFlower(); else if(step===2) renderMessage();}
+    function restart(e){e.stopPropagation(); step=0; scene.onclick=nextStep; scene.style.cursor="pointer"; hint.style.display="block"; renderEnvelope();}
     renderEnvelope();
   </script>
 </body>
